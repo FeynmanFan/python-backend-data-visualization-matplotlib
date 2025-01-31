@@ -1,6 +1,8 @@
 const express = require('express');
 const diskusage = require('diskusage');
 const os = require('os');
+const fs = require('fs').promises; // Using Promises for file operations
+const path = require('path');
 const app = express();
 const port = 3000;
 
@@ -26,7 +28,7 @@ app.get('/getdrivespace', async (req, res) => {
     }
 });
 
-// New Route for getting CPU usage
+// Route for getting CPU usage
 app.get('/getCPUUsage', (req, res) => {
     const cpus = os.cpus();
     let totalIdle = 0, totalTick = 0;
@@ -44,6 +46,18 @@ app.get('/getCPUUsage', (req, res) => {
     res.json({
         cpuUsage: totalUsage + '%'
     });
+});
+
+// New Route for getting response times from JSON file
+app.get('/getresponsetimes', async (req, res) => {
+    try {
+        // Assuming the JSON file is named 'data.json' and is in the same directory as your server script
+        const filePath = path.join(__dirname, 'data.json');
+        const data = await fs.readFile(filePath, 'utf8');
+        res.json(JSON.parse(data));
+    } catch (error) {
+        res.status(500).send(`Error reading file: ${error.message}`);
+    }
 });
 
 // Start the server
