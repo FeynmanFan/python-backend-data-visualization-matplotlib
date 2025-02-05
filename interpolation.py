@@ -23,8 +23,8 @@ spl = make_interp_spline(x, y, k=3)
 y_smooth = spl(x_new)
 
 ax3.plot(x, y, 'o', label='Data Points')
-ax3.plot(x_new, y_smooth, '-', label='Bicubic Interpolation')
-ax3.set_title('Interpolation Method: Bicubic')
+ax3.plot(x_new, y_smooth, '-', label='Cubic Interpolation')
+ax3.set_title('Interpolation Method: Cubic')
 ax3.legend()
 
 # Layout adjustments

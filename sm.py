@@ -1,12 +1,12 @@
 import matplotlib.pyplot as plt
+import pandas as pd
+
+data = pd.read_excel('data.xlsx', sheet_name='Data')
+
+days = data['Days'].tolist()
+cars = data['Cars on Street'].tolist()
 
 plt.figure()
-plt.plot([1, 2, 3], [4, 5, 6])
-plt.plot([1, 2, 3], [7, 8, 9])
+plt.plot(days, cars)
 plt.title("My Plot")
-plt.show()
-
-plt.figure()
-plt.plot([1, 2, 3], [10, 11, 12])
-plt.title("Another Plot")
 plt.show()
