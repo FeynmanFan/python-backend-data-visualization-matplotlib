@@ -1,5 +1,6 @@
 import json
 import matplotlib.pyplot as plt
+from datetime import datetime
 
 with open('data.json', 'r') as file:
     data = json.load(file)
@@ -31,4 +32,8 @@ plt.subplots_adjust(bottom=.2) # 20% more at the bottom
 
 plt.legend(bbox_to_anchor=(.5, -.18), loc='upper left', borderaxespad=0.0)
 
-plt.show()
+current_datetime = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+
+plt.savefig(f'generic-line_{current_datetime}.png', dpi=300, bbox_inches='tight')
+
+plt.close()
