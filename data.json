@@ -1,0 +1,11 @@
+{
+    "descriptor": {
+        "title": "Request latency",
+        "x-axis label": "Hours",
+        "y-axis label": "Latency (100ms)"
+    },
+    "data": {
+        "x": [1, 2, 3, 4, 5],
+        "y": [2, 4, 5, 4, 5]
+    }
+}
