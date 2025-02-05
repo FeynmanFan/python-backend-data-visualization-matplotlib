@@ -1,17 +1,15 @@
 const express = require('express');
 const diskusage = require('diskusage');
 const os = require('os');
-const fs = require('fs').promises; // Using Promises for file operations
+const fs = require('fs').promises; 
 const path = require('path');
 const app = express();
 const port = 3000;
 
-// Middleware for parsing JSON bodies
 app.use(express.json());
 
-// Route for getting drive space
 app.get('/getdrivespace', async (req, res) => {
-    const drive = req.query.drive; // Assuming drive name is passed as a query parameter
+    const drive = req.query.drive;
 
     if (!drive) {
         return res.status(400).send('Drive parameter is required');
@@ -28,7 +26,6 @@ app.get('/getdrivespace', async (req, res) => {
     }
 });
 
-// Route for getting CPU usage
 app.get('/getCPUUsage', (req, res) => {
     const cpus = os.cpus();
     let totalIdle = 0, totalTick = 0;
@@ -48,10 +45,8 @@ app.get('/getCPUUsage', (req, res) => {
     });
 });
 
-// New Route for getting response times from JSON file
 app.get('/getresponsetimes', async (req, res) => {
     try {
-        // Assuming the JSON file is named 'data.json' and is in the same directory as your server script
         const filePath = path.join(__dirname, 'responsetimes.json');
         const data = await fs.readFile(filePath, 'utf8');
         res.json(JSON.parse(data));
@@ -60,7 +55,6 @@ app.get('/getresponsetimes', async (req, res) => {
     }
 });
 
-// Start the server
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
