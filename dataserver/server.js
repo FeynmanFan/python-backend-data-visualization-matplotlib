@@ -52,7 +52,7 @@ app.get('/getCPUUsage', (req, res) => {
 app.get('/getresponsetimes', async (req, res) => {
     try {
         // Assuming the JSON file is named 'data.json' and is in the same directory as your server script
-        const filePath = path.join(__dirname, 'data.json');
+        const filePath = path.join(__dirname, 'responsetimes.json');
         const data = await fs.readFile(filePath, 'utf8');
         res.json(JSON.parse(data));
     } catch (error) {
